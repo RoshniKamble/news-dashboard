@@ -1,38 +1,253 @@
+:root {
+  --bg-primary: #41444b;
+  --bg-secondary: #52575d;
+  --bg-active: #fddb3a;
+  --cl-text: #f6f4e6;
+}
+
+
+/* App.css */
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Navbar styles */
+.navbar {
+  background-color: var(--bg-active);
+  /* Background color for the navbar */
+  color: var(--bg-primary);
+  /* Text color */
+  padding: 10px;
+  /* Add some padding to the navbar */
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  /* Add a subtle shadow */
+  margin-bottom: 20px;
+  border: 5px solid var(--bg-secondary);
 }
 
-.App-link {
-  color: #61dafb;
+.sidebar h3 {
+  font-size: 24px;
+  /* Adjust the font size */
+  margin: 0;
+  /* Remove default margin */
+  margin: 30px;
+  font-family: "Roboto", sans-serif;
+  border-bottom: 2px solid var(--cl-text);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Sidebar styles */
+.sidebar {
+  width: 260px;
+  /* Set the width of the sidebar */
+  background: var(--bg-secondary);
+  /* Background color for the sidebar */
+  color: var(--cl-text);
+  /* Text color */
+  position: fixed;
+  /* Fixed position on the left */
+  top: 0;
+  /* Position at the top of the viewport */
+  bottom: 0;
+  /* Extend to the bottom of the viewport */
+  overflow-y: auto;
+  /* Add scroll if the content overflows */
+  box-shadow: 2px 0 4px rgba(0, 0, 0, 0.2);
+  /* Add a vertical shadow */
+  /* padding: 10px; */
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar li {
+  /* margin: 10px 0; */
+  padding: 5px;
+  display: block;
+}
+
+.sidebar li:hover {
+  opacity: 1;
+  box-shadow: 0 2px 6px#0f0f0f;
+}
+
+/* -------------- */
+
+.sidebar ul li {
+  list-style: none;
+  width: 100%;
+  position: relative;
+}
+
+.sidebar ul li a:hover {
+  color: var(--bg-primary);
+}
+
+.sidebar ul li:hover a::before {
+  background-color: var(--bg-active);
+  width: 100%;
+}
+
+.sidebar ul li a {
+  position: relative;
+  display: block;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--cl-text);
+  transition: .2s;
+}
+
+.sidebar ul li a::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  transition: .2s;
+}
+
+.sidebar ul li a .icon {
+  position: relative;
+  display: block;
+  min-width: 60px;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+}
+
+.sidebar ul li a .title {
+  position: relative;
+  font-size: .85em;
+}
+
+.sidebar ul li a .icon * {
+  font-size: 1.1em;
+}
+
+
+
+/* Add hover effect to sidebar links */
+.sidebar a {
+  text-decoration: none;
+  color: #fff;
+  transition: 0.3s;
+}
+
+/* .sidebar a:hover {
+  color: #007bff; /* Change color on hover 
+} */
+
+/* Content container */
+.main-content {
+  margin-left: 260px;
+  /* Adjust the margin to match the sidebar width */
+  padding: 10px;
+  /* Add some padding to the content */
+}
+
+/* Responsive styles for smaller screens */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    /* Full width on smaller screens */
+    position: static;
+    /* Normal flow */
+    box-shadow: none;
+    /* Remove the shadow */
   }
-  to {
-    transform: rotate(360deg);
+
+  .main-content {
+    margin-left: 0;
+    /* No margin on smaller screens */
+  }
+}
+
+
+/* Add this style to your App.css file or create a separate CSS file for the NewsList component */
+.news-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  /* Create a grid with flexible columns */
+  gap: 20px;
+  /* Add some spacing between news articles */
+}
+
+.news-article {
+  border: 1px solid #ddd;
+  /* Add a border to each news article */
+  padding: 10px;
+  background-color: #fff;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+  /* Add a subtle shadow */
+}
+
+.news-article h2 {
+  font-size: 20px;
+  margin: 10px 0;
+}
+
+.news-article img {
+  max-width: 100%;
+  height: auto;
+}
+
+.news-article p {
+  margin: 5px 0;
+}
+
+.read-more {
+  text-align: right !important;
+}
+
+/* App.css */
+
+
+.sidebar.open {
+  left: 0;
+  /* Show the sidebar when open */
+}
+
+.toggle-button {
+  display: none;
+  /* Initially hide the toggle button on all screens */
+  position: absolute;
+  top: 10px;
+  right: 10px; /* Adjust the right property to position it on the right side */
+  background: none;
+  border: none;
+  color: var(--bg-primary);
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 1;
+}
+
+/* Media query to show the toggle button on screens less than or equal to 768px wide */
+@media (max-width: 768px) {
+  .navbar {
+    position: initial;
+    margin-top: 40px;
+  }
+
+  .sidebar {
+    width: 250px;
+    height: 100%;
+    position: fixed;
+    left: -250px;
+    /* Hide the sidebar by default on all screens */
+    top: 0;
+    transition: all 0.3s;
+  }
+
+  .toggle-button {
+    display: block;
+    /* Display the toggle button on small screens */
   }
 }
